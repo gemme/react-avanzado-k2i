@@ -2,6 +2,7 @@ import './App.css';
 import { FormatTitle } from './components/Common/FormatTitle';
 import { Wrapper } from './components/Wrapper';
 import { MyAppHook } from './components/MyAppHook';
+import { MyAppStarships } from './components/MyAppStarships';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <br />
       <Wrapper />
       <MyAppHook />
+      <MyAppStarships />
       
     </div>
   );
