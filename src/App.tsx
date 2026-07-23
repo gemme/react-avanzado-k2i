@@ -3,6 +3,7 @@ import { FormatTitle } from './components/Common/FormatTitle';
 import { Wrapper } from './components/Wrapper';
 import { MyAppHook } from './components/MyAppHook';
 import { MyAppStarships } from './components/MyAppStarships';
+import { MyAppHomeWork } from './components/MyAppHomeWork';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Wrapper />
       <MyAppHook />
       <MyAppStarships />
+      <MyAppHomeWork />
       
     </div>
   );

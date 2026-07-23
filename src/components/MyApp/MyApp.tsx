@@ -25,14 +25,14 @@ export class MyApp extends React.Component<object, MyAppState> {
   }
 
 
-  handleStarshipSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.value;
-    getStarshipById(id).then((data) => {
-      this.setState({
-        starshipName: data?.name ?? '',
-      });
-    });
-  };
+  // handleStarshipSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const id = e.target.value;
+  //   getStarshipById(id).then((data) => {
+  //     this.setState({
+  //       starshipName: data?.name ?? '',
+  //     });
+  //   });
+  // };
 
   // este metodo se ejecuta
   // cuando el componente ya se monto
@@ -81,8 +81,6 @@ export class MyApp extends React.Component<object, MyAppState> {
         <div>{this.state.name}</div>
         <div>{this.state.starshipName}</div>
         <div>{'hello world legacy: count: ' + this.state.count}</div>
-        <input type="text" placeholder="Ingresa ID" onChange={this.handleStarshipSearch} />
-        <div>{this.state.starshipName ? `You Starship: ${this.state.starshipName}` : ''}</div>
       </>
     );
   }
