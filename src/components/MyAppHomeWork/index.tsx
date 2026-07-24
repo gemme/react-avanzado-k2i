@@ -1,1 +1,1 @@
-export { MyAppHomeWork } from './MyAppHomeWork.tsx';
+export { MyAppHomeWork } from './MyAppHomeWork';

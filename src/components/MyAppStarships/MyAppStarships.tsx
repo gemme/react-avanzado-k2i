@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import starshipsData from "../../Data/Starship.json";
 import type{ StarshipResponse } from "../../types/Starship";
+import type{ Starship } from "../../types/Starship";
+import { getStarships } from "../../api/getStarships";
 
 export function MyAppStarships() {
   
     
-    const response: StarshipResponse = starshipsData;
-    const render = response.results.map((starship) => <p key={starship.name}>{"name:"+starship.name +" | model:"+ starship.model}</p>);
+    // const response: StarshipResponse = starshipsData;
+    // const render = response.results.map((starship) => <p key={starship.name}>{"name:"+starship.name +" | model:"+ starship.model}</p>);
+    const [starships, setStarships] = useState<Starship[]>([]);
+  
+  useEffect(() => {
+    getStarships().then((data:StarshipResponse) => {
+      setStarships(data.results);
+    });
+    console.log("call useEffect");
+  }, []);
+
+  console.log("render V2", starships);
 
   return (
     <div>
       <h1>My App Starships</h1>
-      {render}
-      {/* {starshipsData.results.map((starship) => <p key={starship.name}>{"name:"+starship.name +" | model:"+ starship.model}</p>)} */}
+
+       {starships.map((starship) => <p key={starship.name}>{starship.name}</p>)}
     </div>
   );
   
