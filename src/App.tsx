@@ -4,6 +4,7 @@ import { Wrapper } from './components/Wrapper';
 import { MyAppHook } from './components/MyAppHook';
 import { MyAppStarships } from './components/MyAppStarships';
 import { MyAppHomeWork } from './components/MyAppHomeWork';
+import { PlanetsList } from './components/PlanetsList';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <MyAppHook />
       <MyAppStarships />
       <MyAppHomeWork />
-      
+      <PlanetsList />
     </div>
   );
 }

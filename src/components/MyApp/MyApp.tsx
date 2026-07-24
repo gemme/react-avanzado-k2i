@@ -1,6 +1,5 @@
 import React from 'react';
 import { getPersonaById } from '../../api/getPersonaById';
-import { getStarshipById } from '../../api/getStarshipByid';
 
 interface MyAppState {
   count: number;
@@ -37,10 +36,10 @@ export class MyApp extends React.Component<object, MyAppState> {
   // este metodo se ejecuta
   // cuando el componente ya se monto
   componentDidMount(): void {
-    
+
     console.log('did mount');
     this.setState({ count: this.state.count + 1 });
-    
+
     getPersonaById('1').then((data) => {
       console.log('Myapp:didmount', data);
       this.setState({
@@ -48,7 +47,7 @@ export class MyApp extends React.Component<object, MyAppState> {
       });
     });
 
-    
+
     //Sin evento 
     // getStarshipById('2').then((data) => {
     //   this.setState({

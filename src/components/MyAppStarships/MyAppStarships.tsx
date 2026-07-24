@@ -9,13 +9,24 @@ export function MyAppStarships() {
     
     // const response: StarshipResponse = starshipsData;
     // const render = response.results.map((starship) => <p key={starship.name}>{"name:"+starship.name +" | model:"+ starship.model}</p>);
-    const [starships, setStarships] = useState<Starship[]>([]);
-  
+  const [starships, setStarships] = useState<Starship[]>([]);
+  const [count, setCount] = useState(0);
   useEffect(() => {
     getStarships().then((data:StarshipResponse) => {
       setStarships(data.results);
     });
     console.log("call useEffect");
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(previousState=> { console.log("Interval", previousState); return previousState + 1});
+     
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   console.log("render V2", starships);
@@ -24,7 +35,8 @@ export function MyAppStarships() {
     <div>
       <h1>My App Starships</h1>
 
-       {starships.map((starship) => <p key={starship.name}>{starship.name}</p>)}
+      <p>Count: {count}</p>
+      {starships.map((starship) => <p key={starship.name}>{starship.name}</p>)}
     </div>
   );
   
