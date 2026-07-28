@@ -1,5 +1,3 @@
-import type { Resident } from './Resident';
-
 export type Planet = {
   name: string;
   rotation_period: string;
@@ -10,7 +8,7 @@ export type Planet = {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: Resident[];
+  residents: string[];
   films: string[];
   created: string;
   edited: string;

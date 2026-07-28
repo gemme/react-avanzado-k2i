@@ -18,16 +18,7 @@ export function MyAppStarships() {
     console.log("call useEffect");
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount(previousState=> { console.log("Interval", previousState); return previousState + 1});
-     
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  
 
   console.log("render V2", starships);
 

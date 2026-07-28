@@ -16,10 +16,3 @@ export type Person = {
   edited: string;
   url: string;
 };
-
-
-export type PersonResponse = {
-  name: string;
-  height: string;
-  birth_year: string;
-};
