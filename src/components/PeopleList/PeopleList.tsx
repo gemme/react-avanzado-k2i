@@ -1,5 +1,5 @@
-import {useState} from 'react';
-
+import {useFetch} from '../../hooks/useFetch';
+import type { PokemonSpeciesPage } from '../../types/PokemonSpecies';
 interface Address {
     street: string;
     streetNumber: number;
@@ -12,14 +12,13 @@ interface People{
 }
 
 export const PeopleList = () => {
-    const [people] = useState<People[]>([{
-        name: 'Ernesto'
-    }, {
-        name: 'Manuel'
-    }]);
+
+    // { data: {  }  }
+    const { data } = useFetch<PokemonSpeciesPage>({url: 'https://pokeapi.co/api/v2/pokemon-species/'});
+
 
     //[<div>Ernesto</div>, <div>Manuel</div>]
-    const render = people.map((p) =>  <div className='title-primary'>{p.name}</div>);
+    const render = data?.results.map((p, index) =>  <div key={p + '-' + index} className='title-primary'>{p.name}</div>);
 
     /*
     render.push(<div>{'Luis'}</div>);

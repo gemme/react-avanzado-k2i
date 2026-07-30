@@ -11,7 +11,7 @@ function App() {
     <div>
       <FormatTitle title={'Ernesto'} />
       <br />
-      <Wrapper />
+      {/* <Wrapper /> */}
       <MyAppHook />
       <Count />
       <PeopleList />

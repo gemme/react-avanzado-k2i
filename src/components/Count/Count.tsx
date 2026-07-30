@@ -3,14 +3,15 @@
 import { useState, useEffect } from 'react';
 import { FormatCount } from './FormatCount';
 import { FormatCountTimeout } from './FormatCountTimeout';
+import { useCounter } from '../../hooks/useCounter';
 
 export const Count = () => {
     // arrays, objects, maps, sets
     // tipo primitivos en js, number, string (chars), boolean
-    const [count, setCount] = useState<number>(0);
+    //const [count, setCount] = useState<number>(0);
 
     const [countTimeout, setCountTimeout] = useState<number>(0);
-
+    const [count] = useCounter();
     // class components 
     // mount -> montaje - didMount
     // update -> actualizacion - didUpdate
@@ -21,7 +22,10 @@ export const Count = () => {
     // update -> actualizacion - useEffect valores en el arreglo que son deps, pueden props o valores del state
     // unmount -> desmontaje - useEffect, return () => clearInterval
 
-    useEffect(() => {
+
+    // esto se reemplaza un custom que se llama
+    // useCounter
+    /* useEffect(() => {
         const id = setInterval(() => {
             console.log('useEffect');
             setCount((prevCount) => prevCount + 1);
@@ -32,7 +36,7 @@ export const Count = () => {
             clearInterval(id);
         };
     // si no hay deps -> [], por lo tanto se ejecuta una sola vez en el montaje
-    }, []);
+    }, []); */
 
     useEffect(() => {
 
