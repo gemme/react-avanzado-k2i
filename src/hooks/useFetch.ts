@@ -34,14 +34,15 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
                 };
             }
             const response = await fetch(url, options);
+
             if(response.ok){
                 const data = await response.json();
+                await (new Promise(resolve => setTimeout(resolve, 5000)));
                 setData(data);
             } else {
                 setError(`Request failed: ${response.status}`);
             }
         } catch(err){
-            console.log(err);
             setError(err instanceof Error ? err.message : 'Request failed');
         } finally {
             setLoading(false);
@@ -49,8 +50,9 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
     };
 
     useEffect(()=>{
+        console.log('useEffect', url, options);
         fetchData(url, options);
-    }, [url, options]);
+    }, [url]);
 
 
     return {
