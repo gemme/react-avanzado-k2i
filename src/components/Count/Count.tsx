@@ -1,6 +1,8 @@
 // core the react hooks
 // built-in hooks, useState, useEffect, useCallback, useMemo, React compiler
 import { useState, useEffect } from 'react';
+import { FormatCount } from './FormatCount';
+import { FormatCountTimeout } from './FormatCountTimeout';
 
 export const Count = () => {
     // arrays, objects, maps, sets
@@ -15,7 +17,7 @@ export const Count = () => {
     // unmount -> desmontaje - wilUnmount
 
     // function components - built-in hooks - useEffect
-    // mount -> montaje - useEffect en sus deps arreglo vacio - y se ejecuta una vez
+    // mount -> montaje - useEffect en sus deps arreglo vacio - y se ejecuta una sola vez en el montaje
     // update -> actualizacion - useEffect valores en el arreglo que son deps, pueden props o valores del state
     // unmount -> desmontaje - useEffect, return () => clearInterval
 
@@ -42,12 +44,11 @@ export const Count = () => {
         
     }, [countTimeout]);
 
-
     // JSX
     return (
         <>
-            <div>{'Count: ' + count}</div>
-            <div>{'Count timeout: ' + countTimeout}</div>
+            <FormatCount count={count}/>
+            <FormatCountTimeout countTimeout={countTimeout}/>
         </>
     );
 }

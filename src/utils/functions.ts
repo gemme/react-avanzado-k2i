@@ -36,6 +36,7 @@ console.log(getLastNameExplicit());
 //const [] = useState();
 
 const array = [1,2,3];
+void array;
 //const uno = array[0];
 //const tres = array[2];
 
@@ -67,7 +68,7 @@ const array = [1,2,3];
 
     // Promises
     
-    const promise = (name: string) => new Promise((resolve, reject)=> {
+    const promise = (name: string) => new Promise((_resolve, reject)=> {
 
         setTimeout(()=> {
             // async process
@@ -109,6 +110,7 @@ const array = [1,2,3];
     // no se recomienda mutar objetos / arreglos
     let jobName = 'k2i';
     jobName = 'pwc';
+    console.log(jobName);
 
     const arr:any = [];
     console.log(arr);

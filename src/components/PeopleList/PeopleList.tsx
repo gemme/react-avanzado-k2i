@@ -12,14 +12,14 @@ interface People{
 }
 
 export const PeopleList = () => {
-    const [people, setPeople] = useState<People[]>([{
+    const [people] = useState<People[]>([{
         name: 'Ernesto'
     }, {
         name: 'Manuel'
     }]);
 
-    //[<span>Ernesto</span>, <span>Manuel</span>]
-    const render = people.map((p) =>  <div>{p.name}</div>);
+    //[<div>Ernesto</div>, <div>Manuel</div>]
+    const render = people.map((p) =>  <div className='title-primary'>{p.name}</div>);
 
     /*
     render.push(<div>{'Luis'}</div>);
