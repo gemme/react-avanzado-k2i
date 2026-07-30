@@ -20,8 +20,12 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
     //const { url, options } = props;
 
     const [data, setData] = useState<R>();
+    const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const fetchData = async (url: string, options: Record<string, unknown>) => {
+        setLoading(true);
+        setError('');
         try{
             if(options){
                 options.headers = {
@@ -33,10 +37,14 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
             if(response.ok){
                 const data = await response.json();
                 setData(data);
-                return;
-          }
-        } catch(error){
-            console.log(error);
+            } else {
+                setError(`Request failed: ${response.status}`);
+            }
+        } catch(err){
+            console.log(err);
+            setError(err instanceof Error ? err.message : 'Request failed');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -46,6 +54,8 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
 
 
     return {
-        data
+        data,
+        error,
+        loading
     };
 }

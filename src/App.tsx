@@ -1,10 +1,9 @@
 import './App.css';
 import './Global.css';
 import { FormatTitle } from './components/Common/FormatTitle';
-import { Wrapper } from './components/Wrapper';
 import { MyAppHook } from './components/MyAppHook';
 import { Count } from './components/Count';
-import { PeopleList } from './components/PeopleList';
+import { PokemonList } from './components/PokemonList';
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
       {/* <Wrapper /> */}
       <MyAppHook />
       <Count />
-      <PeopleList />
+      <PokemonList />
     </div>
   );
 }
