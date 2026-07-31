@@ -5,7 +5,7 @@ import './PokemonList.css';
 
 export const PokemonList = () => {
     const { data, loading, error } = useFetch<PokemonSpeciesPage>({
-        url: 'https://pokeapi.co/api/v2/pokemon-species/',
+        url: 'https://pokeapi.co/api/v2/pokemon-species/'
     });
 
     console.log(loading);

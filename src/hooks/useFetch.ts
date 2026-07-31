@@ -14,7 +14,9 @@ interface UseFetchProps{
     options?: Record<string, unknown>;
 }
 
-export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseFetchProps) => {
+const EMPTY_FETCH_OPTIONS: Record<string, unknown> = {};
+
+export const useFetch = <R = Record<string, unknown>>({ url, options = EMPTY_FETCH_OPTIONS}: UseFetchProps) => {
     // props.url
     // props.options
     //const { url, options } = props;
@@ -27,13 +29,14 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
         setLoading(true);
         setError('');
         try{
-            if(options){
-                options.headers = {
-                    ...(options.headers ?? {}),
+            const defaultOptions = {...options};
+            if(defaultOptions){
+                defaultOptions.headers = {
+                    ...(defaultOptions.headers ?? {}),
                     "Content-Type": "application/json",
                 };
             }
-            const response = await fetch(url, options);
+            const response = await fetch(url, defaultOptions);
 
             if(response.ok){
                 const data = await response.json();
@@ -52,7 +55,7 @@ export const useFetch = <R = Record<string, unknown>>({ url, options = {}}: UseF
     useEffect(()=>{
         console.log('useEffect', url, options);
         fetchData(url, options);
-    }, [url]);
+    }, [url, options]); // options = {}
 
 
     return {
