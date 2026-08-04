@@ -9,7 +9,7 @@ console.log('query');
 // hacer un cmponente muestre los prodiuctos
 // validaciones
 
-const fetchGraphql = async (url: string, query: string, variables: any, headers: Record<string, unknown> | undefined = {}) => {
+export const fetchGraphql = async (url: string, query: string, variables: any, headers: Record<string, unknown> | undefined = {}) => {
 
     try{
        const response = await fetch(url, {
@@ -30,11 +30,12 @@ const fetchGraphql = async (url: string, query: string, variables: any, headers:
         return data;
     }catch(error){
         console.log(error);
+        throw error;
     }
 
 }
 
-
+/*
 const variables = { "variantsFirst": 1 };
 
 const productsQuery = 
@@ -71,12 +72,13 @@ const productsQuery =
         }
       }
     }`
-    
+  */  
 
-
+/*
 fetchGraphql('https://mock.shop/api',productsQuery, variables)
     .then(json => {
         console.log(json);
         console.log(JSON.stringify(json));
     })
     .catch(error => console.log(error));
+    */

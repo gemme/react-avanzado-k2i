@@ -1,6 +1,6 @@
 export const query = () =>
-`query ($variantsFirst: Int) {
-  products(first: $variantsFirst) {
+`query ($productsFirst: Int!, $variantsFirst: Int!) {
+  products(first: $productsFirst) {
     edges {
       node {
         id
@@ -31,4 +31,4 @@ export const query = () =>
       }
     }
   }
-}`
+}`;
