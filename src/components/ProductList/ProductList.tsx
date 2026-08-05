@@ -7,6 +7,7 @@ import {
 import { ProductCard } from '../Common/ProductCard';
 import { Spinner } from '../Common/Spinner';
 import './ProductList.css';
+import { useProducts } from '../../providers/ProductsProvider';
 
 const MOCK_SHOP_API = 'https://mock.shop/api';
 
@@ -26,6 +27,9 @@ export function ProductListView({
   error,
   response,
 }: ProductListViewProps) {
+
+  const { title: titleContext, setSelectedProduct, selectedProduct} = useProducts();
+
   if (loading) {
     return <Spinner />;
   }
@@ -52,23 +56,25 @@ export function ProductListView({
   return (
     <section className="product-list" aria-labelledby="product-list-heading">
       <h2 id="product-list-heading" className="product-list__heading">
-        Products
+        {titleContext}
       </h2>
       <ul className="product-list__grid">
         {products.map(({ node }) => {
           const displayPrice = getProductDisplayPrice(node);
-
           return (
             <li key={node.id} className="product-list__item">
-              <ProductCard
-                title={node.title}
-                imageUrl={node.featuredImage?.url}
-                price={displayPrice?.amount ?? '0'}
-                currencyCode={displayPrice?.currencyCode ?? 'USD'}
-                onChoose={() => {
-                  console.log('Choose', node.handle);
-                }}
-              />
+              <>
+                <ProductCard
+                  title={node.title}
+                  imageUrl={node.featuredImage?.url}
+                  price={displayPrice?.amount ?? '0'}
+                  currencyCode={displayPrice?.currencyCode ?? 'USD'}
+                  onChoose={() => {
+                    console.log('Choose', node.handle);
+                    setSelectedProduct(node.handle);
+                  }}
+                />
+              </>
             </li>
           );
         })}
@@ -86,6 +92,6 @@ export function ProductList() {
   });
 
   return (
-    <ProductListView loading={loading} error={error} response={data} />
+    <ProductListView loading={loading} error={error} response={data}/>
   );
 }
