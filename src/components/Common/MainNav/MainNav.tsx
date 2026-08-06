@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 
 import { defaultNavItems, STORE_BRAND, type NavItem } from './navItems';
 import './MainNav.css';
+import {NavLink} from 'react-router';
 
 export type MainNavProps = {
   items?: NavItem[];
@@ -65,23 +66,21 @@ export function MainNav({
         <nav aria-label="Primary">
           <ul className="main-nav__list">
             {items.map((item) => {
-              const active = isActiveItem(item, activePath);
+              //const active = isActiveItem(item, activePath);
 
               return (
-                <li key={item.to}>
-                  <a
-                    href={item.to}
-                    className={
-                      active
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={
+                    ({ isActive }) =>
+                      isActive
                         ? 'main-nav__link main-nav__link--active'
                         : 'main-nav__link'
-                    }
-                    aria-current={active ? 'page' : undefined}
-                    onClick={closeMobile}
+                  }
                   >
                     {item.label}
-                  </a>
-                </li>
+                </NavLink>
               );
             })}
           </ul>

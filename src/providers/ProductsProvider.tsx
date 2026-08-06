@@ -13,9 +13,9 @@ interface ProductProviderProps {
 }
 
 export const ProductProvider = ({children}: ProductProviderProps) => {
-
     const [selectedProduct, setSelectedProduct] = useState('no product selected');
     const title = 'ik2 products';
+
     return ( 
         <ProductContext value={{
             selectedProduct,

@@ -9,9 +9,17 @@ export type SelectedOption = {
   value: string;
 };
 
+export type ProductVariantImage = {
+  url: string;
+};
+
+/** List query may omit id/image; getProductByHandle returns full variant fields */
 export type ProductVariantNode = {
+  id?: string;
+  title?: string;
   selectedOptions: SelectedOption[];
   price: Money;
+  image?: ProductVariantImage | null;
 };
 
 export type ProductImage = {
@@ -49,6 +57,14 @@ export type GraphqlResponse<TData> = {
 };
 
 export type GetProductsResponse = GraphqlResponse<GetProductsData>;
+
+/** Respuesta `data` de getProductByHandle */
+export type GetProductByHandleData = {
+  product: ProductNode | null;
+};
+
+export type GetProductByHandleResponse =
+  GraphqlResponse<GetProductByHandleData>;
 
 /** Precio de la primera variante (para ProductCard) */
 export function getProductDisplayPrice(product: ProductNode): Money | undefined {

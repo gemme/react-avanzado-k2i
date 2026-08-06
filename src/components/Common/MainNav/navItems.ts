@@ -6,7 +6,6 @@ export type NavItem = {
 
 export const defaultNavItems: NavItem[] = [
   { label: 'Home', to: '/', end: true },
-  { label: 'Shop', to: '/products' },
   { label: 'Cart', to: '/cart' },
 ];
 

@@ -8,7 +8,13 @@ import { ProductCard } from '../Common/ProductCard';
 import { Spinner } from '../Common/Spinner';
 import './ProductList.css';
 import { useProducts } from '../../providers/ProductsProvider';
+import { useNavigate } from 'react-router';
 
+const CartSelection = ({selectedProduct}: {selectedProduct: string}) => {
+  return <div>Cart selection: {selectedProduct}</div>; 
+}
+
+// todo: import it from constants.ts
 const MOCK_SHOP_API = 'https://mock.shop/api';
 
 const productsVariables = {
@@ -27,6 +33,7 @@ export function ProductListView({
   error,
   response,
 }: ProductListViewProps) {
+  const navigate = useNavigate();
 
   const { title: titleContext, setSelectedProduct, selectedProduct} = useProducts();
 
@@ -55,6 +62,7 @@ export function ProductListView({
 
   return (
     <section className="product-list" aria-labelledby="product-list-heading">
+      <CartSelection selectedProduct={selectedProduct}/>
       <h2 id="product-list-heading" className="product-list__heading">
         {titleContext}
       </h2>
@@ -72,6 +80,7 @@ export function ProductListView({
                   onChoose={() => {
                     console.log('Choose', node.handle);
                     setSelectedProduct(node.handle);
+                    navigate('/product-detail/'+node.handle)
                   }}
                 />
               </>
@@ -82,7 +91,6 @@ export function ProductListView({
     </section>
   );
 }
-
 export function ProductList() {
   const { data, loading, error } = useFetchGraphql<GetProductsResponse>({
     url: MOCK_SHOP_API,

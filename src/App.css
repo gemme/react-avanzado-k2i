@@ -187,12 +187,14 @@
 .app-shell {
   display: flex;
   min-height: 100vh;
+  background: #fff;
 }
 
 .app-shell__main {
   flex: 1;
   min-width: 0;
   padding: 1rem;
+  background: #fff;
 }
 
 @media (max-width: 768px) {
